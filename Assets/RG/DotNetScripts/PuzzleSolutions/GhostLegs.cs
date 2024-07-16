@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 
 internal class GhostLegs : IPuzzle {
+    public TimeSpan TimeElapsed { get; private set; }
     public void Run(bool isTest, ref string result) {
         string[] inputs = Console.ReadLine().Split(' ');
         int W = int.Parse(inputs[0]);

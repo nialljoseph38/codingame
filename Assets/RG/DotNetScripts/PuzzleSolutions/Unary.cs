@@ -2,6 +2,7 @@ using System;
 
 internal class Unary : IPuzzle {
     private IPuzzle puzzleImplementation;
+    public TimeSpan TimeElapsed { get; private set; }
     public void Run(bool isTest, ref string result) {
 
         string MESSAGE = Console.ReadLine();

@@ -1,6 +1,7 @@
 using System;
 
 internal class MarsLanderOne : IPuzzle {
+    public TimeSpan TimeElapsed { get; private set; }
     public void Run(bool isTest, ref string result) {
         string[] inputs;
         int surfaceN = int.Parse(Console.ReadLine()); // the number of points used to draw the surface of Mars.
@@ -32,11 +33,6 @@ internal class MarsLanderOne : IPuzzle {
                     }
                 }
             }
-            // Write an action using Console.WriteLine()
-            // To debug: Console.Error.WriteLine("Debug messages...");
-
-
-            // 2 integers: rotate power. rotate is the desired rotation angle (should be 0 for level 1), power is the desired thrust power (0 to 4).
             Console.WriteLine(rotate.ToString() + " " + power);
         }
     }

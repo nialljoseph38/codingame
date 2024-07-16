@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 
 internal class HorseRacingDuals : IPuzzle {
+    public TimeSpan TimeElapsed { get; private set; }
     public void Run(bool isTest, ref string result) {
         int N = int.Parse(Console.ReadLine());
         List<int> list = new();

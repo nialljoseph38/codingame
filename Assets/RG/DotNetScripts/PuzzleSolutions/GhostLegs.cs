@@ -1,0 +1,34 @@
+using System;
+using System.Collections.Generic;
+
+internal class GhostLegs : IPuzzle {
+    public void Run(bool isTest, ref string result) {
+        string[] inputs = Console.ReadLine().Split(' ');
+        int W = int.Parse(inputs[0]);
+        int H = int.Parse(inputs[1]);
+        List<string> diagram = new();
+        for(int j = 0; j < H; j++) {
+            diagram.Add(Console.ReadLine());
+        }
+        for(int i = 0; i < W; i += 3) {
+            string firstline = diagram[0];
+            char T = firstline[i];
+            char B = ' ';
+            int currentRow = i;
+            for(int j = 0; j < H - 1; j++) {
+                string line = diagram[j + 1];
+                if(currentRow < W - 1 && line[currentRow + 1] == '-') {
+                    currentRow += 3;
+                }
+                else if(currentRow != 0 && line[currentRow - 1] == '-') {
+                    currentRow -= 3;
+                }
+                if(line[0] != '|') {
+                    B = line[currentRow];
+                }
+            }
+
+            Console.WriteLine(T + B.ToString());
+        }
+    }
+}

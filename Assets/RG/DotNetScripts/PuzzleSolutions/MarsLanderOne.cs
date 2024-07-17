@@ -5,9 +5,7 @@ using System.IO;
 internal class MarsLanderOne : IPuzzle {
     public TimeSpan TimeElapsed { get; private set; }
     public bool createButton { get; private set; } = false;
-    public StreamReader streamReader { get; set; }
-    public void Run(bool isTest, ref string result) {
-        streamReader = new StreamReader(@"C:\Users\thele\codingame\Assets\RG\Data\Input.txt");
+    public void Run(bool isTest, ref string result, StreamReader streamReader) {
         Stopwatch stopWatch = new Stopwatch();
         stopWatch.Start();
         string results = "";

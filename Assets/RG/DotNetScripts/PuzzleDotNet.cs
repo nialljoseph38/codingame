@@ -11,12 +11,6 @@ public class PuzzleDotNet {
     
     private PuzzleDotNet() {
         FindClassesImplementingInterface(ref puzzles);
-        foreach(var puzzle in puzzles) {
-            if(puzzle is Defibrillators) {
-                var _ = "";
-                puzzle.Run(true, ref _);
-            }
-        }
     }
 
     public static void FindClassesImplementingInterface<T>(ref List<T> instances) {

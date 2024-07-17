@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 using UnityEngine;
 
 public class PuzzleMenuView {
@@ -20,8 +22,22 @@ public class PuzzleMenuView {
                 var puzzleButton = GameObject.Instantiate(sceneData.puzzleButtonPrefab, puzzleMenuReference.buttonsParent);
                 puzzleButton.textContainer.text = puzzle.GetType().Name;
                 puzzleButton.button.onClick.AddListener(() => {
+                    string scriptDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+                    string relativePath = Path.Combine(scriptDirectory, @"..\..\Assets\RG\Data\Input.txt");
+                    string fullPath = Path.GetFullPath(relativePath);
+                    if(!File.Exists(fullPath)) {
+                        using(FileStream fs = File.Create(fullPath));
+                        return;
+                    }
+                    StreamReader streamReader = new StreamReader(fullPath);
+                    while(true) {
+                        string line = streamReader.ReadLine();
+                        if (line == puzzle.GetType().Name || line == null) {
+                            break;
+                        }
+                    }
                     string result = "";
-                    puzzle.Run(true, ref result);
+                    puzzle.Run(true, ref result, streamReader);
                     //Debug.Log(puzzle.TimeElapsed.TotalMilliseconds);
                     puzzleMenuReference.resultContainer.text = result;
                     puzzleMenuReference.timeContainer.text = puzzle.TimeElapsed.TotalMilliseconds.ToString();

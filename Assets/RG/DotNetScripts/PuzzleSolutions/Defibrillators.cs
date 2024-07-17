@@ -6,11 +6,9 @@ using static UnityEngine.UIElements.UxmlAttributeDescription;
 internal class Defibrillators : IPuzzle {
     public TimeSpan TimeElapsed { get; private set; }
     public bool createButton { get; private set; } = true;
-    public StreamReader streamReader { get; set; }
     
     
-    public void Run(bool isTest, ref string result) {
-        streamReader = new StreamReader(@"C:\Users\thele\codingame\Assets\RG\Data\Input.txt");
+    public void Run(bool isTest, ref string result, StreamReader streamReader) {
         Stopwatch stopWatch = new Stopwatch();
         stopWatch.Start();
         string LON = isTest ? streamReader.ReadLine() : Console.ReadLine();

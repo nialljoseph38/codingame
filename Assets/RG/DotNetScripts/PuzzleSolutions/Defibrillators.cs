@@ -1,15 +1,17 @@
 using System;
+using System.Diagnostics;
 
 internal class Defibrillators : IPuzzle {
     public TimeSpan TimeElapsed { get; private set; }
-    
+    public bool createButton { get; private set; } = true;
+    Stopwatch stopWatch = new Stopwatch();
     public void Run(bool isTest, ref string result) {
         (int N, string LON, string LAT, string[] defibList) data = (3, "3,879483", "43,608177", new string[] {
             "1;Maison de la Prevention Sante;6 rue Maguelone 340000 Montpellier;;3,87952263361082;43,6071285339217",
             "2;Hotel de Ville;1 place Georges Freche 34267 Montpellier;;3,89652239197876;43,5987299452849",
             "3;Zoo de Lunaret;50 avenue Agropolis 34090 Mtp;;3,87388031141133;43,6395872778854"
         });
-        var time = DateTime.Now;
+        stopWatch.Start();
         string LON = isTest ? data.LON : Console.ReadLine();
         string LAT = isTest ? data.LAT : Console.ReadLine();
         double LONa = ConvertDegrees(LON);
@@ -31,7 +33,8 @@ internal class Defibrillators : IPuzzle {
             }
         }
         result = closestDefib[1];
-        TimeElapsed = DateTime.Now - time;
+        stopWatch.Stop();
+        TimeElapsed = stopWatch.Elapsed;
         Console.WriteLine(closestDefib[1]);
     }
     private static double ConvertDegrees(string input) {

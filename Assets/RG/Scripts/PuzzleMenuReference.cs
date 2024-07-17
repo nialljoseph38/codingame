@@ -6,5 +6,6 @@ using UnityEngine;
 public class PuzzleMenuReference : MonoBehaviour {
     public Transform buttonsParent;
     public TextMeshProUGUI resultContainer;
+    public TextMeshProUGUI timeContainer;
 }
 

@@ -1,11 +1,15 @@
 using System;
+using System.Diagnostics;
+using UnityEngine;
 
 internal class Unary : IPuzzle {
-    private IPuzzle puzzleImplementation;
     public TimeSpan TimeElapsed { get; private set; }
+    public bool createButton { get; private set; } = true;
+    Stopwatch stopWatch = new Stopwatch();
     public void Run(bool isTest, ref string result) {
-
-        string MESSAGE = Console.ReadLine();
+        stopWatch.Start();
+        string input = "C";
+        string MESSAGE = isTest ? input : Console.ReadLine();
         string binary = "";
         for(int i = 0; i < MESSAGE.Length; i++) {
             char letter = MESSAGE[i];
@@ -44,7 +48,9 @@ internal class Unary : IPuzzle {
         }
         unary = unary[0..^1];
 
-
+        stopWatch.Stop();
+        TimeElapsed = stopWatch.Elapsed;
+        result = unary;
         Console.WriteLine(unary);
     }
 }

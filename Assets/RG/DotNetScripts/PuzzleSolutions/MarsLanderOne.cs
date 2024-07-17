@@ -1,14 +1,28 @@
 using System;
+using System.Diagnostics;
+using UnityEngine;
 
 internal class MarsLanderOne : IPuzzle {
     public TimeSpan TimeElapsed { get; private set; }
+    public bool createButton { get; private set; } = false;
+    Stopwatch stopWatch = new Stopwatch();
     public void Run(bool isTest, ref string result) {
+        stopWatch.Start();
+        string results = "";
         string[] inputs;
         int surfaceN = int.Parse(Console.ReadLine()); // the number of points used to draw the surface of Mars.
+        int landXPrev = -1;
+        int landYPrev = -1;
+        int flatY = -1;
         for(int i = 0; i < surfaceN; i++) {
             inputs = Console.ReadLine().Split(' ');
             int landX = int.Parse(inputs[0]); // X coordinate of a surface point. (0 to 6999)
             int landY = int.Parse(inputs[1]); // Y coordinate of a surface point. By linking all the points together in a sequential fashion, you form the surface of Mars.
+            if(landY == landYPrev) {
+                flatY = landY;
+            }
+            landXPrev = landX;
+            landYPrev = landY;
         }
 
         // game loop
@@ -33,7 +47,18 @@ internal class MarsLanderOne : IPuzzle {
                     }
                 }
             }
-            Console.WriteLine(rotate.ToString() + " " + power);
+            if(isTest) {
+                results += rotate.ToString() + " " + power + "   ";
+            }
+            else {
+                Console.WriteLine(rotate.ToString() + " " + power);
+            }
+            if (Y <= flatY+10) {
+                break;
+            }
         }
+        stopWatch.Stop();
+        TimeElapsed = stopWatch.Elapsed;
+        result = results;
     }
 }

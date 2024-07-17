@@ -1,15 +1,16 @@
 using System;
 using System.Diagnostics;
-using UnityEngine;
+using System.IO;
 
 internal class Unary : IPuzzle {
     public TimeSpan TimeElapsed { get; private set; }
     public bool createButton { get; private set; } = true;
-    Stopwatch stopWatch = new Stopwatch();
+    public StreamReader streamReader { get; set; }
     public void Run(bool isTest, ref string result) {
+        streamReader = new StreamReader(@"C:\Users\thele\codingame\Assets\RG\Data\Input.txt");
+        Stopwatch stopWatch = new Stopwatch();
         stopWatch.Start();
-        string input = "C";
-        string MESSAGE = isTest ? input : Console.ReadLine();
+        string MESSAGE = isTest ? streamReader.ReadLine() : Console.ReadLine();
         string binary = "";
         for(int i = 0; i < MESSAGE.Length; i++) {
             char letter = MESSAGE[i];

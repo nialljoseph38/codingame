@@ -1,12 +1,14 @@
 using System;
 using System.Diagnostics;
-using UnityEngine;
+using System.IO;
 
 internal class MarsLanderOne : IPuzzle {
     public TimeSpan TimeElapsed { get; private set; }
     public bool createButton { get; private set; } = false;
-    Stopwatch stopWatch = new Stopwatch();
+    public StreamReader streamReader { get; set; }
     public void Run(bool isTest, ref string result) {
+        streamReader = new StreamReader(@"C:\Users\thele\codingame\Assets\RG\Data\Input.txt");
+        Stopwatch stopWatch = new Stopwatch();
         stopWatch.Start();
         string results = "";
         string[] inputs;

@@ -2,30 +2,23 @@ using NUnit.Framework.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using UnityEngine;
+using System.IO;
 
 internal class GhostLegs : IPuzzle {
     public TimeSpan TimeElapsed { get; private set; }
     public bool createButton { get; private set; } = true;
-    Stopwatch stopWatch = new Stopwatch();
+    public StreamReader streamReader { get; set; }
     public void Run(bool isTest, ref string result) {
-        (int W, int H, string[] lines) data = (7, 7, new string[] {
-            "A  B  C",
-            "|  |  |",
-            "|--|  |",
-            "|  |--|",
-            "|  |--|",
-            "|  |  |",
-            "1  2  3"
-        });
+        streamReader = new StreamReader(@"C:\Users\thele\codingame\Assets\RG\Data\Input.txt");
+        Stopwatch stopWatch = new Stopwatch();
         stopWatch.Start();
-        string[] inputs = isTest ? data.lines : Console.ReadLine().Split(' ');
-        int W = isTest ? data.W : int.Parse(inputs[0]);
-        int H = isTest ? data.H : int.Parse(inputs[1]);
+        string[] inputs = isTest ? streamReader.ReadLine().Split(' ') : Console.ReadLine().Split(' ');
+        int W = int.Parse(inputs[0]);
+        int H = int.Parse(inputs[1]);
         string results = "";
         List<string> diagram = new();
         for(int j = 0; j < H; j++) {
-            diagram.Add( isTest ? inputs[j] : Console.ReadLine());
+            diagram.Add( isTest ? streamReader.ReadLine() : Console.ReadLine());
         }
         for(int i = 0; i < W; i += 3) {
             string firstline = diagram[0];

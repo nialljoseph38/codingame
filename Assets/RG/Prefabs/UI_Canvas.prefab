@@ -33,7 +33,7 @@ RectTransform:
   m_Father: {fileID: 7195181022483244998}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -257,7 +257,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 273, y: -300}
+  m_AnchoredPosition: {x: 340, y: -300}
   m_SizeDelta: {x: 1153.7085, y: 742.1011}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1989586448461558644
@@ -502,7 +502,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 780, y: -300}
+  m_AnchoredPosition: {x: 850, y: -300}
   m_SizeDelta: {x: 1153.7085, y: 742.1011}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &191346588361525720
@@ -635,7 +635,7 @@ RectTransform:
   m_Father: {fileID: 4834663476744046489}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -810,7 +810,7 @@ GameObject:
   - component: {fileID: 5027480282906072041}
   - component: {fileID: 6979426805176799272}
   m_Layer: 5
-  m_Name: Scroll View
+  m_Name: Puzzle Scroll View
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1358,7 +1358,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1251258454416180863
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1484,7 +1484,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2777076024945248371
 RectTransform:
   m_ObjectHideFlags: 0

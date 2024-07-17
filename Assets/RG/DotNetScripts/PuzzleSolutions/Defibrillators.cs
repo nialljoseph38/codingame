@@ -1,25 +1,26 @@
 using System;
 using System.Diagnostics;
+using System.IO;
+using static UnityEngine.UIElements.UxmlAttributeDescription;
 
 internal class Defibrillators : IPuzzle {
     public TimeSpan TimeElapsed { get; private set; }
     public bool createButton { get; private set; } = true;
-    Stopwatch stopWatch = new Stopwatch();
+    public StreamReader streamReader { get; set; }
+    
+    
     public void Run(bool isTest, ref string result) {
-        (int N, string LON, string LAT, string[] defibList) data = (3, "3,879483", "43,608177", new string[] {
-            "1;Maison de la Prevention Sante;6 rue Maguelone 340000 Montpellier;;3,87952263361082;43,6071285339217",
-            "2;Hotel de Ville;1 place Georges Freche 34267 Montpellier;;3,89652239197876;43,5987299452849",
-            "3;Zoo de Lunaret;50 avenue Agropolis 34090 Mtp;;3,87388031141133;43,6395872778854"
-        });
+        streamReader = new StreamReader(@"C:\Users\thele\codingame\Assets\RG\Data\Input.txt");
+        Stopwatch stopWatch = new Stopwatch();
         stopWatch.Start();
-        string LON = isTest ? data.LON : Console.ReadLine();
-        string LAT = isTest ? data.LAT : Console.ReadLine();
+        string LON = isTest ? streamReader.ReadLine() : Console.ReadLine();
+        string LAT = isTest ? streamReader.ReadLine() : Console.ReadLine();
         double LONa = ConvertDegrees(LON);
         double LATa = ConvertDegrees(LAT);
-        int N = isTest ? data.N : int.Parse(Console.ReadLine());
+        int N = isTest ? int.Parse(streamReader.ReadLine()) : int.Parse(Console.ReadLine());
         string[] closestDefib = "empty".Split();
         for(int i = 0; i < N; i++) {
-            string defibInput = isTest ? data.defibList[i] : Console.ReadLine();
+            string defibInput = isTest ? streamReader.ReadLine() : Console.ReadLine();
             defibInput += ";";
             string[] DEFIB = defibInput.Split(';');
             double LONb = ConvertDegrees(DEFIB[4]);
